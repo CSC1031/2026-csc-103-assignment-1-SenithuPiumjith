@@ -3,7 +3,7 @@
 
 int main()
 {
-    int subject1, subject2, subject3, total;
+    int subject1, subject2, subject3, total, highest;
     float average;
     char grade;
     char *result;
@@ -18,10 +18,20 @@ int main()
     total = subject1 + subject2 + subject3;
     average = total / 3.0;
 
-    if (average >= 80){
-      grade = 'A';
+
+    highest = subject1;
+    if (subject2 > highest) {
+        highest = subject2;
     }
-    else if (average >=70 && average < 80){
+    if (subject3 > highest) {
+        highest = subject3;
+    }
+
+
+    if (average >= 80){
+        grade = 'A';
+    }
+    else if (average >= 70 && average < 80){
         grade = 'B';
     }
     else if (average >= 60 && average < 70){
@@ -34,16 +44,22 @@ int main()
         grade = 'F';
     }
 
+
     if (subject1 >= 40 && subject2 >= 40 && subject3 >= 40){
-        result = "PASS";
+
+        if (average >= 85 && subject1 >= 80 && subject2 >= 80 && subject3 >= 80){
+            result = "PASS WITH DISTINCTION";
+        } else {
+            result = "PASS";
+        }
     }
     else{
         result = "FAIL";
     }
 
-
     printf("\nTotal: %d\n", total);
     printf("Average: %.2f\n", average);
+    printf("Highest Mark: %d\n", highest);
     printf("Grade: %c\n", grade);
     printf("Result: %s\n", result);
     return 0;
